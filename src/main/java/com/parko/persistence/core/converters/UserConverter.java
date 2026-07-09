@@ -16,8 +16,9 @@ public final class UserConverter {
         entity.setFullName(embedded.fullName());
         entity.setEmail(embedded.email().value());
         entity.setInstitutionalDomain(embedded.email().institutionalDomain());
-        entity.setPasswordHash(embedded.passwordHash());
+        entity.setFirebaseUid(embedded.firebaseUid());
         entity.setRole(embedded.role());
+        entity.setActive(embedded.active());
         entity.setCreatedAt(embedded.createdAt());
         entity.setUpdatedAt(embedded.updatedAt());
         return entity;
@@ -30,8 +31,9 @@ public final class UserConverter {
                 entity.getStudentId(),
                 entity.getFullName(),
                 email,
-                entity.getPasswordHash(),
+                entity.getFirebaseUid(),
                 entity.getRole(),
+                entity.isActive(),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt()
         );

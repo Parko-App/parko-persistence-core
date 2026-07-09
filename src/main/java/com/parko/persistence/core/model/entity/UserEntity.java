@@ -36,8 +36,8 @@ public class UserEntity {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
+    @Column(name = "firebase_uid", nullable = false, unique = true)
+    private String firebaseUid;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -49,6 +49,9 @@ public class UserEntity {
 
     @Column(name = "email_verified", nullable = false)
     private boolean emailVerified;
+
+    @Column(name = "active", nullable = false)
+    private boolean active;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

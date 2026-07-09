@@ -21,7 +21,7 @@ class UserConverterTest {
         LocalDateTime createdAt = LocalDateTime.now().minusDays(1);
         LocalDateTime updatedAt = LocalDateTime.now();
         UserEmbedded embedded = new UserEmbedded(
-                id, "12345", "Juan Perez", email, "hash", UserRole.STUDENT, createdAt, updatedAt);
+                id, "12345", "Juan Perez", email, "firebase-uid-1", UserRole.STUDENT, true, createdAt, updatedAt);
 
         UserEntity entity = UserConverter.toEntity(embedded);
 
@@ -30,8 +30,9 @@ class UserConverterTest {
         assertThat(entity.getFullName()).isEqualTo("Juan Perez");
         assertThat(entity.getEmail()).isEqualTo("12345@frc.utn.edu.ar");
         assertThat(entity.getInstitutionalDomain()).isEqualTo(InstitutionalDomain.FRC);
-        assertThat(entity.getPasswordHash()).isEqualTo("hash");
+        assertThat(entity.getFirebaseUid()).isEqualTo("firebase-uid-1");
         assertThat(entity.getRole()).isEqualTo(UserRole.STUDENT);
+        assertThat(entity.isActive()).isTrue();
         assertThat(entity.getCreatedAt()).isEqualTo(createdAt);
         assertThat(entity.getUpdatedAt()).isEqualTo(updatedAt);
     }
@@ -47,8 +48,9 @@ class UserConverterTest {
         entity.setFullName("Maria Gomez");
         entity.setEmail("54321@sistemas.frc.utn.edu.ar");
         entity.setInstitutionalDomain(InstitutionalDomain.SISTEMAS);
-        entity.setPasswordHash("hash2");
+        entity.setFirebaseUid("firebase-uid-2");
         entity.setRole(UserRole.STAFF);
+        entity.setActive(true);
         entity.setCreatedAt(createdAt);
         entity.setUpdatedAt(updatedAt);
 
@@ -60,8 +62,9 @@ class UserConverterTest {
         assertThat(embedded.email().value()).isEqualTo("54321@sistemas.frc.utn.edu.ar");
         assertThat(embedded.email().studentId()).isEqualTo("54321");
         assertThat(embedded.email().institutionalDomain()).isEqualTo(InstitutionalDomain.SISTEMAS);
-        assertThat(embedded.passwordHash()).isEqualTo("hash2");
+        assertThat(embedded.firebaseUid()).isEqualTo("firebase-uid-2");
         assertThat(embedded.role()).isEqualTo(UserRole.STAFF);
+        assertThat(embedded.active()).isTrue();
         assertThat(embedded.createdAt()).isEqualTo(createdAt);
         assertThat(embedded.updatedAt()).isEqualTo(updatedAt);
     }
