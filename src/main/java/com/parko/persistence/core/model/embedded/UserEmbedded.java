@@ -10,8 +10,9 @@ public record UserEmbedded(
         String studentId,
         String fullName,
         EmailEmbedded email,
-        String passwordHash,
+        String firebaseUid,
         UserRole role,
+        boolean active,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ) {
