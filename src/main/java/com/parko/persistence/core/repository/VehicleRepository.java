@@ -11,5 +11,7 @@ public interface VehicleRepository extends JpaRepository<VehicleEntity, UUID> {
 
     List<VehicleEntity> findByUserId(UUID userId);
 
+    List<VehicleEntity> findByUserIdAndActiveTrue(UUID userId);
+
     Optional<VehicleEntity> findByPlate(String plate);
 }
