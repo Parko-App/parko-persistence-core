@@ -10,6 +10,7 @@ public record ParkingSessionEmbedded(
         UUID id,
         UUID vehicleId,
         String plateSnapshot,
+        String visitorPlate,
         SessionType sessionType,
         SessionStatus status,
         LocalDateTime entryAt,

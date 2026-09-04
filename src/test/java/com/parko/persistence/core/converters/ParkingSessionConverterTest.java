@@ -22,7 +22,7 @@ class ParkingSessionConverterTest {
         LocalDateTime createdAt = LocalDateTime.now().minusHours(1);
         LocalDateTime updatedAt = LocalDateTime.now();
         ParkingSessionEmbedded embedded = new ParkingSessionEmbedded(
-                id, vehicleId, "AB123CD", SessionType.REGISTERED, SessionStatus.ACTIVE,
+                id, vehicleId, "AB123CD", null, SessionType.REGISTERED, SessionStatus.ACTIVE,
                 entryAt, null, createdAt, updatedAt);
 
         ParkingSessionEntity entity = ParkingSessionConverter.toEntity(embedded);
@@ -30,6 +30,7 @@ class ParkingSessionConverterTest {
         assertThat(entity.getId()).isEqualTo(id);
         assertThat(entity.getVehicle().getId()).isEqualTo(vehicleId);
         assertThat(entity.getPlateSnapshot()).isEqualTo("AB123CD");
+        assertThat(entity.getVisitorPlate()).isNull();
         assertThat(entity.getSessionType()).isEqualTo(SessionType.REGISTERED);
         assertThat(entity.getStatus()).isEqualTo(SessionStatus.ACTIVE);
         assertThat(entity.getEntryAt()).isEqualTo(entryAt);
@@ -43,13 +44,14 @@ class ParkingSessionConverterTest {
         UUID id = UUID.randomUUID();
         LocalDateTime entryAt = LocalDateTime.now();
         ParkingSessionEmbedded embedded = new ParkingSessionEmbedded(
-                id, null, null, SessionType.VISITOR, SessionStatus.ACTIVE,
+                id, null, null, "ZZ999ZZ", SessionType.VISITOR, SessionStatus.ACTIVE,
                 entryAt, null, entryAt, entryAt);
 
         ParkingSessionEntity entity = ParkingSessionConverter.toEntity(embedded);
 
         assertThat(entity.getVehicle()).isNull();
         assertThat(entity.getPlateSnapshot()).isNull();
+        assertThat(entity.getVisitorPlate()).isEqualTo("ZZ999ZZ");
         assertThat(entity.getSessionType()).isEqualTo(SessionType.VISITOR);
     }
 
@@ -65,6 +67,7 @@ class ParkingSessionConverterTest {
         entity.setId(id);
         entity.setVehicle(vehicle);
         entity.setPlateSnapshot("XY987ZW");
+        entity.setVisitorPlate(null);
         entity.setSessionType(SessionType.REGISTERED);
         entity.setStatus(SessionStatus.COMPLETED);
         entity.setEntryAt(entryAt);
@@ -77,6 +80,7 @@ class ParkingSessionConverterTest {
         assertThat(embedded.id()).isEqualTo(id);
         assertThat(embedded.vehicleId()).isEqualTo(vehicleId);
         assertThat(embedded.plateSnapshot()).isEqualTo("XY987ZW");
+        assertThat(embedded.visitorPlate()).isNull();
         assertThat(embedded.sessionType()).isEqualTo(SessionType.REGISTERED);
         assertThat(embedded.status()).isEqualTo(SessionStatus.COMPLETED);
         assertThat(embedded.entryAt()).isEqualTo(entryAt);
@@ -88,6 +92,7 @@ class ParkingSessionConverterTest {
         ParkingSessionEntity entity = new ParkingSessionEntity();
         entity.setId(UUID.randomUUID());
         entity.setVehicle(null);
+        entity.setVisitorPlate("ZZ999ZZ");
         entity.setSessionType(SessionType.VISITOR);
         entity.setStatus(SessionStatus.ACTIVE);
         entity.setEntryAt(LocalDateTime.now());
@@ -96,5 +101,6 @@ class ParkingSessionConverterTest {
 
         assertThat(embedded.vehicleId()).isNull();
         assertThat(embedded.plateSnapshot()).isNull();
+        assertThat(embedded.visitorPlate()).isEqualTo("ZZ999ZZ");
     }
 }

@@ -20,6 +20,7 @@ public final class ParkingSessionConverter {
         entity.setId(embedded.id());
         entity.setVehicle(vehicle);
         entity.setPlateSnapshot(embedded.plateSnapshot());
+        entity.setVisitorPlate(embedded.visitorPlate());
         entity.setSessionType(embedded.sessionType());
         entity.setStatus(embedded.status());
         entity.setEntryAt(embedded.entryAt());
@@ -35,6 +36,7 @@ public final class ParkingSessionConverter {
                 entity.getId(),
                 vehicle != null ? vehicle.getId() : null,
                 entity.getPlateSnapshot(),
+                entity.getVisitorPlate(),
                 entity.getSessionType(),
                 entity.getStatus(),
                 entity.getEntryAt(),
