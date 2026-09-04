@@ -37,6 +37,9 @@ public class ParkingSessionEntity {
     @Column(name = "plate_snapshot")
     private String plateSnapshot;
 
+    @Column(name = "visitor_plate")
+    private String visitorPlate;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "session_type", nullable = false)
     private SessionType sessionType;

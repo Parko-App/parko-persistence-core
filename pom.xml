@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.parko</groupId>
 	<artifactId>persistence.core</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name/>
 	<description/>
 	<url/>
@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>com</groupId>
 			<artifactId>parko-domain-lib</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 
 		<dependency>
