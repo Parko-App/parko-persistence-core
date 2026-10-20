@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface ParkingSessionRepository extends JpaRepository<ParkingSessionEntity, UUID> {
 
     Optional<ParkingSessionEntity> findByPlateSnapshotAndStatus(String plateSnapshot, SessionStatus status);
+
+    long countByStatus(SessionStatus status);
 }
