@@ -11,5 +11,7 @@ public interface ParkingSessionRepository extends JpaRepository<ParkingSessionEn
 
     Optional<ParkingSessionEntity> findByPlateSnapshotAndStatus(String plateSnapshot, SessionStatus status);
 
+    Optional<ParkingSessionEntity> findFirstByVisitorPlateAndStatusOrderByEntryAtDesc(String visitorPlate, SessionStatus status);
+
     long countByStatus(SessionStatus status);
 }
