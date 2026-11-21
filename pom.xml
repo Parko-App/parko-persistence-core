@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.parko</groupId>
 	<artifactId>persistence.core</artifactId>
-	<version>0.0.10</version>
+	<version>0.0.11</version>
 	<name/>
 	<description/>
 	<url/>
