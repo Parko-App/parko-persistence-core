@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,6 +19,9 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
     boolean existsByParkingSession_IdAndTypeAndStatus(UUID parkingSessionId, TransactionType type, TransactionStatus status);
 
     Optional<TransactionEntity> findByParkingSession_IdAndTypeAndStatus(UUID parkingSessionId, TransactionType type, TransactionStatus status);
+
+    List<TransactionEntity> findByBalanceAccount_IdAndTypeAndStatusOrderByCreatedAtAsc(
+            UUID balanceAccountId, TransactionType type, TransactionStatus status);
 
     Page<TransactionEntity> findByBalanceAccount_User_FirebaseUidOrderByCreatedAtDesc(String firebaseUid, Pageable pageable);
 
